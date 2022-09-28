@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { schemaValidation } from "../middleware/schemaValidation.js";
-import categorySchema from "../schemas/categories.js";
+import categorySchema from "../schemas/categoriesSchema.js";
 import {categoriesController} from "../controller/categoriesController.js"
 
 const categoriesRouter = Router()
