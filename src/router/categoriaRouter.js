@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { validateSchema } from "../middleware/schemaValidation";
-import categorySchema from "../schemas/categories";
+import { schemaValidation } from "../middleware/schemaValidation.js";
+import categorySchema from "../schemas/categories.js";
+import {categoriesController} from "../controller/categoriesController.js"
 
-const categories = Router()
+const categoriesRouter = Router()
 
-categories.post('/categories', validateSchema(categorySchema), )
-categories.get('/categories', )
+categoriesRouter.post('/categories',  schemaValidation(categorySchema), 
+                                categoriesController.postCategories)
+categoriesRouter.get('/categories', categoriesController.getCategories)
 
-export default categories
+export default categoriesRouter
