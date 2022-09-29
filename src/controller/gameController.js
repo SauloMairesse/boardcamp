@@ -12,20 +12,21 @@ async function getGames(req, res){
   }
 
 async function postGames (req, res){
-    console.log('cheguei aqui ? ')
     const {name, image, categoryId, stockTotal, pricePerDay} = req.body
-
+    
     const nameVerify = name.replace(" ", "")
-
-    if(stockTotal <= 0 || pricePerDay <= 0 || nameVerify.length === 0)
-        throw{ type: 'greater than zero'}
-
+    
     try {
-        const gameExisting = await db.query(`SELECT * FROM games WHERE name = $1`, [name])
+        if(stockTotal <= 0 || pricePerDay <= 0 || nameVerify.length === 0)
+            throw{ type: 'greater than zero'}
+
+        const gameExisting = await db.query(`SELECT * FROM games WHERE name = $1`,
+                                            [name])
         if(gameExisting.rows.length !== 0)
             throw{ type: 'game already Exist'}
 
-        const category = await db.query(`SELECT * FROM categories WHERE id = $1`, [categoryId])    
+        const category = await db.query(`SELECT * FROM categories WHERE id = $1`,
+                                        [categoryId])    
         console.log(category.rows)
         if(category.rows.length === 0)
             throw{ type: 'id of Category must exist'}
@@ -42,8 +43,8 @@ async function postGames (req, res){
         if(err.type == 'game already Exist'){
             return res.sendStatus(409)
         }
-        console.log(err)
 
+        console.log(err)
         return res.sendStatus(500)
   }
 }
