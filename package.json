@@ -28,6 +28,7 @@
     "gerador-validador-cpf": "^5.0.2",
     "joi": "^17.6.1",
     "joi-cpf-cnpj": "^0.1.0",
+    "moment": "^2.29.4",
     "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "validate-cpf-joi": "^0.0.8"

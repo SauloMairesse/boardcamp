@@ -78,7 +78,7 @@ async function putCustomer (req, res){
 
         await db.query(`
             UPDATE customers
-            SET name = $1, phone = $2, cpf = $4, birthday = $4
+            SET name = $1, phone = $2, cpf = $3, birthday = $4
             WHERE customers.id = $5`,
             [name, phone, cpf, birthday, id])  
     
